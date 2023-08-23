@@ -6,8 +6,8 @@
 
 NGINX_TAR_GZ = http://nginx.org/download/nginx-1.19.10.tar.gz
 OPENSSL_TAR_GZ = https://www.openssl.org/source/openssl-1.1.1j.tar.gz
-PCRE_TAR_GZ = https://ftp.pcre.org/pub/pcre/pcre-8.44.tar.gz
-ZLIB_TAR_GZ = http://zlib.net/zlib-1.2.11.tar.gz
+PCRE_TAR_GZ = https://udomain.dl.sourceforge.net/project/pcre/pcre/8.44/pcre-8.44.tar.gz
+ZLIB_TAR_GZ = http://www.zlib.net/current/zlib.tar.gz
 
 WGET = wget --no-use-server-timestamps
 
