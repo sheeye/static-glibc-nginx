@@ -1,0 +1,22 @@
+name: Build AMD64 NSS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3  
+
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+
+    - name: Make
+      run: |
+        docker run --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp amd64/gcc bash -c "sed -i 's#pcre/.FOLDER src/.PATCHED#pcre/.FOLDER#g' ./Makefile && sed -i 's#\$(LDFLAGS)#\$(LDFLAGS) -lc -lnss_files -lnss_dns -lresolv#g' ./Makefile && make"
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: nginx_amd64_nss
+        path: nginx/nginx
