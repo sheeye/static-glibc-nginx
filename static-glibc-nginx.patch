@@ -29,10 +29,10 @@ index 3213527..f61aed7 100644
 -        }
 -
 -        ccf->group = grp->gr_gid;
-+        //ngx_set_errno(ENOSYS);
-+        //ngx_log_error(NGX_LOG_EMERG, cycle->log, ngx_errno,
-+        //              "getpwnam(\"" NGX_USER "\") disabled for static build");
-+        //return NGX_CONF_ERROR;
++        ngx_set_errno(ENOSYS);
++        ngx_log_error(NGX_LOG_EMERG, cycle->log, ngx_errno,
++                      "getpwnam(\"" NGX_USER "\") disabled for static build");
++        return NGX_CONF_ERROR;
      }
  
  
