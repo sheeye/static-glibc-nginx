@@ -14,7 +14,7 @@ jobs:
 
     - name: Make
       run: |
-        docker run --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp amd64/gcc bash -c "wget https://git.musl-libc.org/cgit/musl/snapshot/musl-1.2.4.tar.gz && tar -zxvf musl-1.2.4.tar.gz && cd musl-1.2.4 && ./configure && make && make install && cd .. && sed -i 's/patch.*static-glibc-nginx.patch/:/g' ./Makefile && sed -i 's/\\\$(CC)/musl-gcc/g' ./Makefile && make"
+        docker run --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp amd64/gcc bash -c "wget https://git.musl-libc.org/cgit/musl/snapshot/musl-1.2.4.tar.gz && tar -zxvf musl-1.2.4.tar.gz && cd musl-1.2.4 && ./configure && make && make install && cd .. && sed -i 's/patch.*static-glibc-nginx.patch/:/g' ./Makefile && sed -i 's#\\\$(CC)#/usr/local/musl/bin/musl-gcc#g' ./Makefile && make"
 
     - uses: actions/upload-artifact@v3
       with:
