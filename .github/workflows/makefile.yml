@@ -1,0 +1,22 @@
+name: Build ARM64 MUSL
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3  
+
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+
+    - name: Make
+      run: |
+        docker run --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp arm64v8/gcc bash -c "rm -rf ./Makefile && mv ./Makefile_MUSL ./Makefile && make"
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: nginx_arm64_musl
+        path: nginx/nginx
